@@ -138,7 +138,7 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         tblGepek = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("G√©pnapl√≥ ellen≈ërz√©s");
+        setTitle("GÈpnaplÛ ellenırzÈs");
 
         txtGepszuro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtGepszuro.setText("%");
@@ -149,7 +149,7 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         });
 
         cbxIdo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbxIdo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ezen az √≥r√°n", "Ma", "7 napja", "30 napja" }));
+        cbxIdo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ezen az Ûr·n", "Ma", "7 napja", "30 napja" }));
         cbxIdo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxIdoActionPerformed(evt);
@@ -166,19 +166,19 @@ public class Gepnaplo2 extends javax.swing.JFrame {
 
         chkProb.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         chkProb.setMnemonic('P');
-        chkProb.setText("Csak a probl√©m√°sak");
-        chkProb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkProbActionPerformed(evt);
+        chkProb.setText("Csak a problÈm·sak");
+        chkProb.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkProbItemStateChanged(evt);
             }
         });
 
         btnFrissit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnFrissit.setMnemonic('F');
-        btnFrissit.setText("Friss√≠t√©s");
-        btnFrissit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnFrissitMouseReleased(evt);
+        btnFrissit.setText("FrissÌtÈs");
+        btnFrissit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFrissitActionPerformed(evt);
             }
         });
 
@@ -188,7 +188,7 @@ public class Gepnaplo2 extends javax.swing.JFrame {
 
             },
             new String [] {
-                "G√©p", "Id≈ë", "N√©v", "√Ållapot", "Oszt√°ly", "Iskola"
+                "GÈp", "Idı", "NÈv", "¡llapot", "Oszt·ly", "Iskola"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -249,25 +249,25 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxIdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxIdoActionPerformed
+    private void txtNevszuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNevszuroActionPerformed
         beolvas();
-    }//GEN-LAST:event_cbxIdoActionPerformed
-
-    private void chkProbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkProbActionPerformed
-        beolvas();
-    }//GEN-LAST:event_chkProbActionPerformed
+    }//GEN-LAST:event_txtNevszuroActionPerformed
 
     private void txtGepszuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGepszuroActionPerformed
         beolvas();
     }//GEN-LAST:event_txtGepszuroActionPerformed
 
-    private void txtNevszuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNevszuroActionPerformed
+    private void cbxIdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxIdoActionPerformed
         beolvas();
-    }//GEN-LAST:event_txtNevszuroActionPerformed
+    }//GEN-LAST:event_cbxIdoActionPerformed
 
-    private void btnFrissitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFrissitMouseReleased
+    private void chkProbItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkProbItemStateChanged
         beolvas();
-    }//GEN-LAST:event_btnFrissitMouseReleased
+    }//GEN-LAST:event_chkProbItemStateChanged
+
+    private void btnFrissitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrissitActionPerformed
+        beolvas();
+    }//GEN-LAST:event_btnFrissitActionPerformed
 
     /**
      * @param args the command line arguments
