@@ -5,18 +5,36 @@
  */
 package gepnaplo2;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author t1
+ * @author Darázsi Márk
  */
 public class Gepnaplo2 extends javax.swing.JFrame {
 
+    Properties tulajdonsagok = new Properties();
+    String t_ip, t_user, t_pass;
+    
     /**
      * Creates new form Gepnaplo2
      */
     public Gepnaplo2() {
         initComponents();
         cbxIdo.requestFocus();
+        // tulajdonságok beolvasása
+        try (FileInputStream be = new FileInputStream("config.properties")) {
+            tulajdonsagok.load(be);
+            t_ip = tulajdonsagok.getProperty("ip");
+            t_user = tulajdonsagok.getProperty("user");
+            t_pass = tulajdonsagok.getProperty("pass");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.exit(0);
+        }
     }
 
     /**
@@ -37,6 +55,7 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         tblGepek = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gépnapló ellenőrzés");
 
         txtGepszuro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtGepszuro.setText("%");
@@ -119,6 +138,7 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
