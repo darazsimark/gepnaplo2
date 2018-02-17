@@ -7,8 +7,14 @@ package gepnaplo2;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,7 +43,7 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         }
     }
     
-        private String lekerdez() {
+    private String lekerdez() {
         String q = "";
         if (!txtGepszuro.getText().isEmpty()) {
             q = q + " felhasznal Like '" + txtGepszuro.getText() + "'AND ";
@@ -64,7 +70,35 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         return "SELECT felhasznalo,iskola,osztaly,nev,ido,allapot "
                 + "FROM gepek WHERE" + q + " ORDER BY ido DESC;";
     }
-
+        
+    private void beolvas() {
+        final String dbUrl = "jdbc:mysql://" + t_ip + ":3306/gepnaplo"
+                            + "?useUnicode=true&characterEncoding=UTF-8";
+        final String user = t_user;
+        final String pass = "tanar" + t_pass;
+        DefaultTableModel tm = (DefaultTableModel)tblGepek.getModel();
+        
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(lekerdez());
+                ResultSet eredmeny = parancs.executeQuery()) {
+            tm.setRowCount(0);
+            while (eredmeny.next()) {
+                Object sor[] = {
+                    eredmeny.getString("felhasznalo"),
+                    eredmeny.getString("ido"),
+                    eredmeny.getString("nev"),
+                    eredmeny.getString("allapot"),
+                    eredmeny.getString("osztaly"),
+                    eredmeny.getString("iskola")
+                };
+                tm.addRow(sor);
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                System.exit(0);
+            }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,16 +121,36 @@ public class Gepnaplo2 extends javax.swing.JFrame {
 
         txtGepszuro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtGepszuro.setText("%");
+        txtGepszuro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGepszuroActionPerformed(evt);
+            }
+        });
 
         cbxIdo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbxIdo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ezen az órán", "Ma", "7 napja", "30 napja" }));
+        cbxIdo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxIdoActionPerformed(evt);
+            }
+        });
 
         txtNevszuro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNevszuro.setText("%");
+        txtNevszuro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNevszuroActionPerformed(evt);
+            }
+        });
 
         chkProb.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         chkProb.setMnemonic('P');
         chkProb.setText("Csak a problémásak");
+        chkProb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkProbActionPerformed(evt);
+            }
+        });
 
         btnFrissit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnFrissit.setMnemonic('F');
@@ -168,6 +222,22 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbxIdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxIdoActionPerformed
+        beolvas();
+    }//GEN-LAST:event_cbxIdoActionPerformed
+
+    private void chkProbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkProbActionPerformed
+        beolvas();
+    }//GEN-LAST:event_chkProbActionPerformed
+
+    private void txtGepszuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGepszuroActionPerformed
+        beolvas();
+    }//GEN-LAST:event_txtGepszuroActionPerformed
+
+    private void txtNevszuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNevszuroActionPerformed
+        beolvas();
+    }//GEN-LAST:event_txtNevszuroActionPerformed
 
     /**
      * @param args the command line arguments

@@ -71,6 +71,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="%"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGepszuroActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbxIdo">
       <Properties>
@@ -86,6 +89,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxIdoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -97,6 +103,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="%"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNevszuroActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkProb">
       <Properties>
@@ -106,6 +115,9 @@
         <Property name="mnemonic" type="int" value="80"/>
         <Property name="text" type="java.lang.String" value="Csak a probl&#xe9;m&#xe1;sak"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkProbActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnFrissit">
       <Properties>
