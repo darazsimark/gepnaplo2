@@ -127,6 +127,9 @@
         <Property name="mnemonic" type="int" value="70"/>
         <Property name="text" type="java.lang.String" value="Friss&#xed;t&#xe9;s"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnFrissitMouseReleased"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

@@ -41,28 +41,34 @@ public class Gepnaplo2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             System.exit(0);
         }
+        torol();
+        beolvas();
     }
     
     private String lekerdez() {
         String q = "";
         if (!txtGepszuro.getText().isEmpty()) {
-            q = q + " felhasznal Like '" + txtGepszuro.getText() + "'AND ";
+            q = q + " felhasznalo Like '" + txtGepszuro.getText() + "' AND ";
         }
         switch (cbxIdo.getSelectedIndex()) {
             case 0: // ezen az órán
-                q = q + "TIMEDIFF(NOW(), ido)< '00:45' AND";
+                q = q + " TIMEDIFF(NOW(),ido)< '00:45' AND";
                 break;
             case 1: // ma
                 q = q + " DATE(ido)=DATE(NOW()) AND";
                 break;
             case 2: // 7 napja
-                q = q + "DATEDIFF(NOW(),ido)<=7 AND";
+                q = q + " DATEDIFF(NOW(),ido)<=7 AND";
                 break;
             case 3: // 30 napja
-                q = q + "DATEDIFF(NOW(),ido)<=30 AND";
+                q = q + " DATEDIFF(NOW(),ido)<=30 AND";
                 break;
         }
         if (!txtNevszuro.getText().isEmpty()) {
+            q = q + " nev LIKE '" + txtNevszuro.getText() + "' AND ";
+        }
+        
+        if (chkProb.isSelected()) {
             q = q + " allapot NOT LIKE 'Rendben%'";
         } else {
             q = q + " allapot LIKE '%'";
@@ -97,6 +103,21 @@ public class Gepnaplo2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
                 System.exit(0);
             }
+    }
+    
+    private void torol() {
+        final String dbUrl = "jdbc:mysql://" + t_ip + ":3306/gepnaplo"
+                            + "?useUnicode=true&characterEncoding=UTF-8";
+        final String user = t_user;
+        final String pass = "tanar" + t_pass;
+        final String s = "DELETE FROM gepek WHERE DATEDIFF(NOW(),ido)>30";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.executeUpdate(s);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.exit(0);
+        }
     }
     
     /**
@@ -155,6 +176,11 @@ public class Gepnaplo2 extends javax.swing.JFrame {
         btnFrissit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnFrissit.setMnemonic('F');
         btnFrissit.setText("Frissítés");
+        btnFrissit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnFrissitMouseReleased(evt);
+            }
+        });
 
         tblGepek.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblGepek.setModel(new javax.swing.table.DefaultTableModel(
@@ -238,6 +264,10 @@ public class Gepnaplo2 extends javax.swing.JFrame {
     private void txtNevszuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNevszuroActionPerformed
         beolvas();
     }//GEN-LAST:event_txtNevszuroActionPerformed
+
+    private void btnFrissitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFrissitMouseReleased
+        beolvas();
+    }//GEN-LAST:event_btnFrissitMouseReleased
 
     /**
      * @param args the command line arguments
