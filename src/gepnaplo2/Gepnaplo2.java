@@ -16,6 +16,7 @@ public class Gepnaplo2 extends javax.swing.JFrame {
      */
     public Gepnaplo2() {
         initComponents();
+        cbxIdo.requestFocus();
     }
 
     /**
@@ -27,17 +28,94 @@ public class Gepnaplo2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtGepszuro = new javax.swing.JTextField();
+        cbxIdo = new javax.swing.JComboBox<>();
+        txtNevszuro = new javax.swing.JTextField();
+        chkProb = new javax.swing.JCheckBox();
+        btnFrissit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblGepek = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtGepszuro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtGepszuro.setText("%");
+
+        cbxIdo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbxIdo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ezen az órán", "Ma", "7 napja", "30 napja" }));
+
+        txtNevszuro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNevszuro.setText("%");
+
+        chkProb.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        chkProb.setMnemonic('P');
+        chkProb.setText("Csak a problémásak");
+
+        btnFrissit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnFrissit.setMnemonic('F');
+        btnFrissit.setText("Frissítés");
+
+        tblGepek.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tblGepek.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Gép", "Idő", "Név", "Állapot", "Osztály", "Iskola"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblGepek);
+        if (tblGepek.getColumnModel().getColumnCount() > 0) {
+            tblGepek.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblGepek.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tblGepek.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tblGepek.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tblGepek.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tblGepek.getColumnModel().getColumn(5).setPreferredWidth(170);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(txtGepszuro, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxIdo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNevszuro, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chkProb, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(btnFrissit, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtGepszuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxIdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNevszuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkProb)
+                    .addComponent(btnFrissit))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +157,12 @@ public class Gepnaplo2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFrissit;
+    private javax.swing.JComboBox<String> cbxIdo;
+    private javax.swing.JCheckBox chkProb;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblGepek;
+    private javax.swing.JTextField txtGepszuro;
+    private javax.swing.JTextField txtNevszuro;
     // End of variables declaration//GEN-END:variables
 }
